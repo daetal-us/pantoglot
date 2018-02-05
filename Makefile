@@ -1,7 +1,10 @@
-.PHONY: build test latest push release
+.PHONY: clean build test latest push release link
 
 NAME = pantoglot/alpine
 WD = $(shell pwd)
+
+clean:
+	rm /usr/local/bin/docker-pantoglot
 
 build:
 	docker build -t ${NAME}:dev .
@@ -17,3 +20,6 @@ push: latest
 
 release:
 	rake build && rake release
+
+link:
+	ln -s ${WD}/bin/docker-pantoglot /usr/local/bin/docker-pantoglot
