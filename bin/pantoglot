@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH[0, 0] = File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'pantoglot'
+require 'json'
+require 'optparse'
+require 'json/add/core'
+
+path = ARGV[0] || Dir.pwd
+
+puts JSON.dump(Pantoglot.process(path))
