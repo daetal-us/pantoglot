@@ -9,6 +9,9 @@ RUN apk --update add --virtual build_deps \
   && gem install github-linguist \
   && apk del build_deps
 
-WORKDIR /pantoglot
-COPY . .
-ENTRYPOINT ["bin/pantoglot"]
+RUN gem install pantoglot
+
+WORKDIR /stage
+
+ENTRYPOINT ["pantoglot"]
+CMD ["."]

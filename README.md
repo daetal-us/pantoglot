@@ -9,10 +9,12 @@ Given a path to a file or directory, excluding `.git` and its contents, symlinks
 The simplest method of utilization is via docker either building and running the docker image locally or using the public image:
 
 ```
-$ docker run -v local/path/to/repo:/repo -it polyglot /repo
+$ docker run -v local/path/to/repo:/stage -it polyglot
 ```
 
-Or, install the gem locally. (Note that the dependency on Linguist inherits added dependency complexities requiring [environment-specific resolution](https://github.com/github/linguist#dependencies).)
+The image currently defaults to `/stage` for analysis when no path is specified.
+
+Alternatively, install the gem locally. (Note that the dependency on Linguist inherits added dependency complexities requiring [environment-specific resolution](https://github.com/github/linguist#dependencies).)
 
 ```
 $ gem install pantoglot
