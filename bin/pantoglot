@@ -7,6 +7,19 @@ require 'json'
 require 'optparse'
 require 'json/add/core'
 
-path = ARGV[0] || Dir.pwd
+path = ARGV[0]
 
-puts JSON.dump(Pantoglot.process(path))
+if path != nil
+  if File.exists?(path)
+    puts JSON.dump(Pantoglot.process(path))
+  else
+    abort "Path does not exist."
+  end
+else
+  abort <<-HELP
+  Pantoglot v#{Pantoglot::VERSION}
+  Analyze source code language, LOC and SLOC breakdown for a given filetree or file.
+
+  Usage: pantoglot <path>
+  HELP
+end

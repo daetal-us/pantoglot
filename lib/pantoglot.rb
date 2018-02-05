@@ -4,6 +4,7 @@ require 'linguist'
 module Pantoglot
   extend self
   def process(path)
+    return nil if !File.exists?(path)
     if File.file?(path)
       return Pantoglot.analyze(path)
     end
@@ -18,8 +19,8 @@ module Pantoglot
         child = Pantoglot.process(fullpath)
       elsif File.file?(fullpath)
         child = Pantoglot.analyze(fullpath)
-        next if child == nil
       end
+      next if child == nil
       loc = loc + child[:loc]
       sloc = sloc + child[:sloc]
       children << child
@@ -34,7 +35,7 @@ module Pantoglot
     }
   end
   def analyze(path)
-    blob = Linguist::FileBlob.new(path, Dir.pwd)
+    blob = Linguist::FileBlob.new(path)
     return nil if blob.symlink?
     # Skip non-Text
     return nil if !blob.text?

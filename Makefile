@@ -1,16 +1,22 @@
 .PHONY: test build
 
 NAME = pantoglot
-SRC=$(pwd)/lib
+WD = $(shell pwd)
 
 build:
 	docker build -t ${NAME}:dev .
 
 test: build
-	docker run -v ${SRC}:/stage -it ${NAME}:dev
+	docker run -it ${NAME}:dev
 
-test-file:
-	docker run -v ${SRC}:/stage -it ${NAME}:dev README.md
+test-repo: build
+	docker run -v ${WD}:/stage -it ${NAME}:dev .
+
+test-file: build
+	docker run -v ${WD}:/stage -it ${NAME}:dev README.md
 
 latest:
-	docker build -t ${NAME}:latest
+	docker build -t ${NAME}:latest .
+
+release:
+	rake build && rake release
