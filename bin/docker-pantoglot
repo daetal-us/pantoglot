@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run -v $1:/stage -a stdout -it pantoglot/alpine
