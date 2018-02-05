@@ -17,9 +17,3 @@ Alternatively, install the gem locally. (Note that the dependency on Linguist in
 ```
 $ gem install pantoglot
 ```
-
-##
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
