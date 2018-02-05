@@ -1,6 +1,6 @@
 # Pantoglot
 
-Analyze source code language, LOC and SLOC breakdown for a given filetree or file.
+Analyze source code language, LOC and SLOC breakdown for a given file-tree or file.
 
 Given a path to a file or directory, excluding `.git` and its contents, symlinks, and any non-text files, attempt to identify the language and calculate the LOC/SLOC using [Linguist](//github.com/github/linguist) and output results in JSON.
 
@@ -9,7 +9,7 @@ Given a path to a file or directory, excluding `.git` and its contents, symlinks
 The simplest method of utilization is via docker either building and running the docker image locally or using the public image:
 
 ```
-$ docker run -v local/path/to/repo:/stage -it polyglot
+$ docker run -v local/path/to/repo:/stage -it pantoglot/alpine
 ```
 
 The image currently defaults to `/stage` for analysis when no path is specified.

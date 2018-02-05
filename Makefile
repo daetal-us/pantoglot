@@ -1,6 +1,6 @@
-.PHONY: test build
+.PHONY: build test latest push release
 
-NAME = pantoglot
+NAME = pantoglot/alpine
 WD = $(shell pwd)
 
 build:
@@ -9,14 +9,11 @@ build:
 test: build
 	docker run -it ${NAME}:dev
 
-test-repo: build
-	docker run -v ${WD}:/stage -it ${NAME}:dev .
-
-test-file: build
-	docker run -v ${WD}:/stage -it ${NAME}:dev README.md
-
 latest:
 	docker build -t ${NAME}:latest .
+
+push: latest
+	docker push ${NAME}:latest
 
 release:
 	rake build && rake release
